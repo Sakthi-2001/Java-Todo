@@ -10,7 +10,7 @@ public class TodoItem{
     TodoItem(String title,String description, Status status){
         this.description=description;
         this.title=title;
-        this.status=status; //make it as enum
+        this.status=status;
     }
     //getters
     public String getTitle(){
