@@ -1,13 +1,13 @@
 package org.example;
 import java.util.*;
 
-public class todoService{
-    HashMap<Integer,TodoItem> hash;
-    todoService(){
+public class TodoService {
+    private HashMap<Integer,TodoItem> hash;
+    TodoService(){
         hash = new HashMap<>();
     }
     public void addItems(int id,String title,String description){
-        TodoItem temp = new TodoItem(title,description, TodoItem.Status.pending);
+        TodoItem temp = new TodoItem(title,description, TodoItem.Status.PENDING);
         hash.put(id,temp);
     }
     public boolean isPresent(int id){
@@ -56,7 +56,12 @@ public class todoService{
     }
 
     public void deleteItem(Integer id){
-        try{
+        if(!isPresent(id)){
+            System.out.println("Enter a valid item to delete");
+            return;
+        }
+        hash.remove(id);
+        /*try{
             if(!this.isPresent(id)){
                 throw new java.lang.RuntimeException(" ");
             }
@@ -64,7 +69,7 @@ public class todoService{
         }
         catch (Exception e){
             System.out.println("Enter a valid item to delete");
-        }
+        }*/
 
     }
     public void updateItem(Integer id, String title, String description, TodoItem.Status status){
@@ -76,8 +81,8 @@ public class todoService{
 
     public void getItemByStatus(String status){
         try{
-            if(!status.equals("pending") && !status.equals("completed")){
-                System.out.println("Enter a valid status type ( pending/completed)");
+            if(!status.equals("PENDING") && !status.equals("COMPLETED")){
+                System.out.println("Enter a valid status type ( PENDING/COMPLETED)");
                 throw new java.lang.RuntimeException(" ");
             }
             ArrayList<String> items = new ArrayList<>();
@@ -112,21 +117,17 @@ public class todoService{
             });
             if(!flag[0]){
                 throw new java.lang.RuntimeException(" ");
-
             }
         }
         catch (Exception e){
             System.out.println(String.format("Item with title \"%s\" not found",title));
         }
-
-
     }
 
     public TodoItem.Status checkValidStatus (String status){
         try{
-            return TodoItem.Status.valueOf(status);
-        }
-        catch(Exception e){
+            return TodoItem.Status.valueOf(status.toUpperCase());
+        } catch(Exception e){
             System.out.println("Status type invalid");
         }
         return TodoItem.Status.valueOf(status);

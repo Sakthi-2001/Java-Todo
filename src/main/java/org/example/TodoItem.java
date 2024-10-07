@@ -4,7 +4,7 @@ public class TodoItem{
     String title;
     String description;
     enum Status {
-        pending,completed;
+        PENDING,COMPLETED;
     }
     Status status;
     TodoItem(String title,String description, Status status){

@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        todoService lst = new todoService();
+        TodoService lst = new TodoService();
         int count=1;
         String title;
         String description;
@@ -64,7 +64,7 @@ public class Main {
                     String updatedStatus = scan.nextLine();
                     TodoItem.Status validatedStatus;
                     try{
-                        validatedStatus = lst.checkValidStatus(updatedStatus);
+                        validatedStatus = lst.checkValidStatus(updatedStatus.toUpperCase());
                         lst.updateItem(id,updatedTitle,updatedDesc,validatedStatus);
                     }
                     catch (Exception e){
@@ -91,7 +91,7 @@ public class Main {
                     System.out.print("Enter the updated status: ");
                     String updatedStatus = scan.nextLine();
                     try{
-                        TodoItem.Status validStatus = lst.checkValidStatus(updatedStatus);
+                        TodoItem.Status validStatus = lst.checkValidStatus(updatedStatus.toUpperCase());
                         lst.updateStatus(id,validStatus);
                     }
                     catch (Exception e){
@@ -103,7 +103,7 @@ public class Main {
                 case 7 : {
                     scan.nextLine();
                     System.out.print("Enter status type to fetch items: ");
-                    String statusType = scan.nextLine().toLowerCase();
+                    String statusType = scan.nextLine().toUpperCase();
                     lst.getItemByStatus(statusType);
                     break;
                 }
