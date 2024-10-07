@@ -1,13 +1,15 @@
 package org.example;
 
 public class TodoItem{
+    int id;
     String title;
     String description;
     enum Status {
         PENDING,COMPLETED;
     }
     Status status;
-    TodoItem(String title,String description, Status status){
+    TodoItem(int id,String title,String description, Status status){
+        this.id=id;
         this.description=description;
         this.title=title;
         this.status=status;

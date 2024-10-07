@@ -7,8 +7,9 @@ public class TodoService {
         hash = new HashMap<>();
     }
     public void addItems(int id,String title,String description){
-        TodoItem temp = new TodoItem(title,description, TodoItem.Status.PENDING);
+        TodoItem temp = new TodoItem(id,title,description, TodoItem.Status.PENDING);
         hash.put(id,temp);
+
     }
     public boolean isPresent(int id){
         return hash.containsKey(id);
@@ -87,7 +88,7 @@ public class TodoService {
             }
             ArrayList<String> items = new ArrayList<>();
             hash.forEach((k,v) -> {
-                if(v.getStatus().toString().toLowerCase().equals(status)){
+                if(v.getStatus().toString().equals(status)){
                     items.add(v.getTitle().toString());
                 }
             });
